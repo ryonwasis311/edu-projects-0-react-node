@@ -534,6 +534,232 @@ button {
   max-width: 800px;
 }
 
+
+.footer {
+  padding-left: 20px;
+  padding-right: 20px;
+  background: linear-gradient(90deg, #333e48 0%, #13171b 100%);
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.footer .leftside {
+  max-width: 960px;
+}
+
+.footer .rightside {
+  max-width: 960px;
+}
+
+.footer .backboard {
+  display: flex;
+  justify-content: center;
+}
+
+.footer .card-icon {
+  margin-top: 47px;
+  width: 437px;
+  height: 109px;
+  flex-shrink: 0;
+}
+.footer .method {
+  margin-top: 32px;
+  color: #fff;
+  font-family: Raleway;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700;
+  line-height: normal;
+}
+
+.footer .small-icon {
+  width: 65px;
+  height: 46px;
+  flex-shrink: 0;
+}
+
+.footer .group-img {
+  margin-top: 26px;
+  width: 650px;
+}
+
+.footer .tel-number {
+  color: #fff;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: Raleway;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 185.4%; /* 29.664px */
+  margin-top: 87px;
+  margin-right: 745px;
+}
+
+.footer .title {
+  margin-top: 87px;
+}
+
+.footer .teltitle {
+  margin-top: 87px;
+  display: flex;
+  justify-content: center;
+}
+
+.footer .mark {
+  display: flex;
+  justify-content: flex-end;
+  margin-right: -200px;
+  gap: 10px;
+}
+.footer p {
+  color: #fff;
+  font-variant-numeric: lining-nums proportional-nums;
+  font-family: Raleway;
+  font-size: 13px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: 185.4%; /* 29.664px */
+}
+
+.footer .title {
+  color: #fff;
+  font-family: Raleway;
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 700px;
+  line-height: normal;
+}
+
+.footer .data {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer .inf {
+  margin-left: 73px;
+  width: 350px;
+}
+
+.footer .content {
+  margin-left: 20px;
+  width: 300;
+}
+
+.footer .footerend {
+  color: #fff;
+  font-family: Raleway;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  text-decoration-line: underline;
+  display: flex;
+  justify-content: center;
+  padding-bottom: 30px;
+  overflow-x: hidden;
+}
+
+.footer .icon {
+  width: 18px;
+  height: 18px;
+  flex-shrink: 0;
+  padding-top: 18px;
+  margin-left: 45px;
+  margin-right: 5px;
+}
+
+
+@media only screen and (max-width: 1440px) {
+  .footer {
+    max-width: 1440px;
+  }
+
+  .footer .leftside {
+    max-width: 600px;
+  }
+
+  .footer .rightside {
+    max-width: 600px;
+  }
+}
+
+@media only screen and (max-width: 1280px) {
+  .footer {
+    max-width: 1280px;
+  }
+  .footer .leftside {
+    max-width: 450px;
+    margin: auto;
+  }
+
+  .footer .rightside {
+    max-width: 450px;
+    margin: auto;
+    justify-content: center;
+  }
+
+  .footer .backboard {
+    flex-direction: column;
+  }
+
+  .footer .group-img {
+    max-width: 500px;
+    flex-wrap: wrap;
+  }
+
+  .footer .inf {
+    margin-left: 0px;
+  }
+
+  .footer .teltitle {
+    justify-content: flex-start;
+  }
+}
+
+@media only screen and (max-width: 980px) {
+  .footer {
+    max-width: 980px;
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .footer .leftside {
+    max-width: 400px;
+  }
+
+  .footer .rightside {
+    max-width: 400px;
+  }
+}
+
+@media only screen and (max-width: 700px) {
+  .footer {
+    max-width: 680px;
+  }
+
+  .footer .leftside {
+    max-width: 330px;
+  }
+
+  .footer .rightside {
+    max-width: 330px;
+  }
+
+  .footer .card-icon {
+    max-width: 300px;
+  }
+
+  .footer .group-img {
+    max-width: 300px;
+  }
+  .footer .teltitle {
+    flex-direction: column;
+  }
+  .footer .mark {
+    justify-content: flex-start;
+  }
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
