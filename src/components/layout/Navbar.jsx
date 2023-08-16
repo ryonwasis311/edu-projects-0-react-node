@@ -5,13 +5,16 @@ const Navbar = () => {
   const guestLinks = (
     <ul>
       <li>
-        <Link to="/profiles">Developers</Link>
+        <Link to="/about">About</Link>
       </li>
       <li>
-        <Link to="/register">Register</Link>
+        <Link to="/contact">Contact</Link>
       </li>
       <li>
-        <Link to="/login">Login</Link>
+        <Link to="/signup">Sign up</Link>
+      </li>
+      <li>
+        <Link to="/login">Log in</Link>
       </li>
     </ul>
   );
@@ -20,10 +23,10 @@ const Navbar = () => {
     <nav className="navbar bg-dark">
       <h1>
         <Link to="/">
-          <i className="fas fa-code" /> DevConnector
+          <i className="fas" /> PRODUCT MANAGEMENT
         </Link>
       </h1>
-      <Fragment>{guestLinks}</Fragment>
+      <Fragment>{ guestLinks }</Fragment>
     </nav>
   );
 };

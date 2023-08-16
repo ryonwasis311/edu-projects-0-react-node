@@ -488,6 +488,52 @@ button {
   margin-bottom: 0.5rem;
 }
 
+.landing .retangle{
+  width: fit-content;
+   border: 2px solid rgb(47, 174, 220);
+  border-radius: 5px;
+    padding: 2px;
+    border-radius: 0.6rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.landing .product_detail{
+  max-width: 600px;
+  width: fit-content;
+    background: #359feb,#0e70e8;
+    text-align: left;
+    padding: 20px;
+    border-radius: 0.6rem;
+    margin-top: 1.5rem;
+    margin-bottom: 3rem;
+}
+
+.Slider {
+  max-width: 1920px;
+  margin: auto;
+  overflow-x: hidden;
+}
+
+.Slider .backboard {
+  background-color: #ff8c1a;
+  max-width: 1920px;
+  background-image: url("/public/group-of-business-executives-using-laptop-at-their-desk\ 1.png");
+  opacity: 0.8;
+  background-repeat: no-repeat;
+  margin: auto;
+  min-height: 763px;
+}
+
+.Slider .cards {
+  margin: auto;
+  margin-top: 90px;
+}
+
+.slider_background {
+  max-width: 800px;
+}
+
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
