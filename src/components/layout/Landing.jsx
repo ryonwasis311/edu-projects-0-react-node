@@ -1,5 +1,5 @@
 import React from "react";
-import Slider_backboard from "./Slider_backboard";
+import Sliderbackboard from "./Slider_backboard";
 
 const Landing = () => {
   return (
@@ -7,12 +7,10 @@ const Landing = () => {
       <div className="dark-overlay">
         <div className="landing-inner">
           <h1 className="x-large">PRODUCT MANAGEMENT</h1>
-          <p className="lead">
+          <p className="lead pb-5">
             Create a product, Update product, Product list, Product information
           </p>
-          <div className="mt-10">
-          <Slider_backboard />
-          </div>
+          <Sliderbackboard />
         </div>
         
         
