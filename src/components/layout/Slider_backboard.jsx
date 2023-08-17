@@ -8,7 +8,7 @@ export default class Sliderbackboard extends Component {
       infinite: true,
       slidesToShow: 3,
       slidesToScroll: 1,
-      autoplay: false ,
+      autoplay: true ,
       speed: 1500,
       autoplaySpeed: 1900,
       cssEase: "linear"

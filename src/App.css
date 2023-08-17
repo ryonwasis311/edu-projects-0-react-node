@@ -531,6 +531,12 @@ button {
   max-width: 800px;
 }
 
+.log_container{
+  max-width: 600px;
+  margin: auto;
+  padding-top: 5vw;
+}
+
 
 .footer {
   padding-left: 20px;
@@ -665,15 +671,6 @@ button {
   margin-right: 5px;
 }
 
-.log_container {
-  padding-top: 100px;
-  max-width: 400px;
-  margin: auto;
-  overflow: hidden;
-  margin-bottom: 3rem;
-}
-
-
 @media only screen and (max-width: 1440px) {
   .footer {
     max-width: 1440px;
@@ -764,7 +761,6 @@ button {
     justify-content: flex-start;
   }
 }
-
 /* Mobile Styles */
 @media (max-width: 700px) {
   .container {
