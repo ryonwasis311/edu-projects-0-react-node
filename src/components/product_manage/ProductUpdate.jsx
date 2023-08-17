@@ -2,7 +2,7 @@ import React, { Fragment, useState } from "react";
 import { Link } from "react-router-dom";
 import ImageUploading from "react-images-uploading";
 
-const ProductCreate = () => {
+const ProductUpdate = () => {
   const [formData, setFormData] = useState({
     title: "",
     description: "",
@@ -111,7 +111,7 @@ const ProductCreate = () => {
           <input
             type="submit"
             className="btn btn-primary p-lg-20"
-            value="Create"
+            value="Update"
           />
            <Link to="/productlist">Cancel</Link>
         </form>
@@ -121,4 +121,4 @@ const ProductCreate = () => {
   );
 };
 
-export default ProductCreate;
+export default ProductUpdate;
