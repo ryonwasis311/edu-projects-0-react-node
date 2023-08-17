@@ -5,6 +5,7 @@ import Landing from "./components/layout/Landing";
 import Footer from "./components/layout/Footer";
 import Signup from "./components/auth/Signup";
 import Login from "./components/auth/Login";
+import Leftsidebar from "./components/productlist/Leftsidebar";
 
 import "./App.css";
 
@@ -16,7 +17,8 @@ const App = () => {
           {/* <Navbar />
             <Landing />
             <Footer /> */}
-          <Login />
+          {/* <Login /> */}
+          <Leftsidebar/>
         </Router>
       </section>
     </div>
