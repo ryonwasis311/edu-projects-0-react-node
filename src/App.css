@@ -671,6 +671,21 @@ button {
   margin-right: 5px;
 }
 
+.log_container .btn {
+
+  margin-top: 20px !important;
+ 
+}
+
+.upload__image-wrapper button{
+  margin-bottom: 15px ;
+  margin-right: 20px;
+}
+
+.form .btn{
+  margin-bottom: 20px;
+}
+
 @media only screen and (max-width: 1440px) {
   .footer {
     max-width: 1440px;
