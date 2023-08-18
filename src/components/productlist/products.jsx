@@ -16,17 +16,26 @@ const Products = () => {
           alt="green iguana"
         />
         <CardContent>
-          <Typography gutterBottom variant="h5" component="div">
+          <Typography gutterBottom variant="h3" component="div">
             Fasshion Shoes.
           </Typography>
-          <Typography variant="body2" color="text.secondary">
+          <Typography gutterBottom variant="h4" component="div">
+            Price
+          </Typography>
+          <Typography gutterBottom variant="h4" component="div">
+            100$
+          </Typography>
+          <Typography variant="h6" color="text.secondary">
             This
           </Typography>
         </CardContent>
       </CardActionArea>
       <CardActions>
-        <Button size="small" color="primary">
-          Share
+        <Button size="large" color="primary">
+          Udate
+        </Button>
+        <Button size="large" color="primary">
+          Delete
         </Button>
       </CardActions>
     </Card>
