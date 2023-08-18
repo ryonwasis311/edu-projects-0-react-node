@@ -1,7 +1,10 @@
+import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
+
+import { Link } from "react-router-dom";
 // @mui
 import {
   Card,
@@ -9,7 +12,6 @@ import {
   Stack,
   Paper,
   Avatar,
-  Button,
   Popover,
   Checkbox,
   TableRow,
@@ -23,13 +25,13 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Label from "../label";
-import Iconify from "../iconify";
-import Scrollbar from "../scrollbar";
+import Label from "../../components/label";
+import Iconify from '../../components/iconify';
+import Scrollbar from '../../components/scrollbar';
 // sections
 import { UserListHead, UserListToolbar } from '../../section/user';
 // mock
-import USERLIST from "../../mock_api/user";
+import USERLIST from '../../mock_api/user';
 
 // ----------------------------------------------------------------------
 
@@ -149,17 +151,17 @@ export default function UserPage() {
   return (
     <>
       <Helmet>
-        <title> User | Minimal UI </title>
+        <title>productlist </title>
       </Helmet>
 
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
-            User
+            Select your favourite products.
           </Typography>
-          <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
-            New User
-          </Button>
+          <Link to="/productcreate" variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+            Create
+          </Link>
         </Stack>
 
         <Card>
@@ -183,7 +185,7 @@ export default function UserPage() {
                     const selectedUser = selected.indexOf(name) !== -1;
 
                     return (
-                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>
+                      <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>  
                         <TableCell padding="checkbox">
                           <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
                         </TableCell>
