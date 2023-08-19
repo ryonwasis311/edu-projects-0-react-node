@@ -17,6 +17,7 @@ import { TableRow,Stack} from '@mui/material';
 const Leftsidebar = () => {
   return (
     <>
+    <div className="d-flex">
       <Sidebar className="app">
         <Menu>
           <MenuItem
@@ -58,6 +59,7 @@ const Leftsidebar = () => {
         </Menu>
       </Sidebar>
       <Productlist />
+      </div>
     </>
   );
 };
