@@ -9,7 +9,7 @@ const Login = () => {
     password2: "",
   });
 
-  const { name, email, password, password2 } = formData;
+  const { name, email, password } = formData;
 
   const onChange = (e) =>
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,6 +26,16 @@ const Login = () => {
         <i className="fas fa-user"></i> Log Into Your Account
       </p>
       <form className="form" onSubmit={(e) => onSubmit(e)}>
+      <div className="form-group">
+          <input
+            type="text"
+            placeholder="User Name"
+            name="Name"
+            value={name}
+            onChange={(e) => onChange(e)}
+            required
+          />
+        </div>
         <div className="form-group">
           <input
             type="email"

@@ -1,14 +1,12 @@
 import UserPage from "./UserPage";
-import { HelmetProvider } from "react-helmet-async";
-import ThemeProvider from "../../theme";
+import Leftsidebar from "./Leftsidebar";
 const Productlist = () => {
   return (
     <>
-      <HelmetProvider>
-        <ThemeProvider>
-              <UserPage />
-        </ThemeProvider>
-      </HelmetProvider>
+      <div className="d-flex">
+        <Leftsidebar/>
+        <UserPage />
+      </div>
     </>
   );
 };

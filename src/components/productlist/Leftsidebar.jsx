@@ -11,13 +11,10 @@ import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/More";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
-import Productlist from "./index";
-import { TableRow,Stack} from '@mui/material';
 
 const Leftsidebar = () => {
   return (
-    <>
-    <div className="d-flex">
+    <>=
       <Sidebar className="app">
         <Menu>
           <MenuItem
@@ -41,14 +38,16 @@ const Leftsidebar = () => {
             {" "}
             Create{" "}
           </MenuItem>
-          <MenuItem icon={<InfoIcon />}> About </MenuItem>
-          <MenuItem icon={<PhoneCallbackIcon />}> Contact </MenuItem>
+          <MenuItem component={<Link to="/about" className="link" />}
+          icon={<InfoIcon />}> About </MenuItem>
+          <MenuItem component={<Link to="/contact" className="link" />} icon={<PhoneCallbackIcon />}> Contact </MenuItem>
           <SubMenu icon={<SettingsIcon />} label="Settings">
             <MenuItem icon={<AccountBoxIcon />}> Account </MenuItem>
             <MenuItem icon={<PrivacyTipIcon />}> Privacy </MenuItem>
             <MenuItem icon={<NotificationsIcon />}> Notifications </MenuItem>
           </SubMenu>
-          <MenuItem icon={<MoreIcon />}> Learn More </MenuItem>
+          <MenuItem component={<Link to="/profile" className="link" />} 
+          icon={<MoreIcon />}> User Profie </MenuItem>
           <MenuItem
             component={<Link to="/login" className="link" />}
             icon={<LogoutIcon />}
@@ -58,8 +57,6 @@ const Leftsidebar = () => {
           </MenuItem>
         </Menu>
       </Sidebar>
-      <Productlist />
-      </div>
     </>
   );
 };

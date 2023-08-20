@@ -3,6 +3,8 @@ import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
 import { useState } from 'react';
+import { HelmetProvider } from "react-helmet-async";
+import ThemeProvider from "../../theme";
 
 import { Link } from "react-router-dom";
 // @mui
@@ -149,7 +151,8 @@ export default function UserPage() {
   const isNotFound = !filteredUsers.length && !!filterName;
 
   return (
-    <>
+    <><HelmetProvider>
+    <ThemeProvider>
       <Helmet>
         <title>productlist </title>
       </Helmet>
@@ -291,6 +294,8 @@ export default function UserPage() {
           Delete
         </MenuItem>
       </Popover>
+      </ThemeProvider>
+      </HelmetProvider>
     </>
   );
 }
