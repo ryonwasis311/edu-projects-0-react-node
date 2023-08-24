@@ -9,7 +9,6 @@ const ProductCreate = () => {
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [description, setDescription] = useState();
-  const [submitted, setSubmitted] = useState(false);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -24,18 +23,15 @@ const ProductCreate = () => {
 
   const saveProduct = (data) => {
     createProduct({ title, description, price });
-    // setId(data.id);
     setTitle(data.title);
     setDescription(data.description);
     setPrice(data.price);
-    setSubmitted(true);
   };
   const newProduct = () => {
     // setId(null);
     setTitle("");
     setDescription("");
     setPrice("");
-    setSubmitted(true);
   };
 
  
