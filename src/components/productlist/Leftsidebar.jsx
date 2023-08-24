@@ -1,18 +1,22 @@
-import { Sidebar, Menu, SubMenu, MenuItem } from "react-pro-sidebar";
+import { Sidebar, Menu, MenuItem } from "react-pro-sidebar";
+import React, { useCallback } from "react";
 import { Link } from "react-router-dom";
 import GridViewRoundedIcon from "@mui/icons-material/GridViewRounded";
 import AddIcon from "@mui/icons-material/Add";
 import InfoIcon from "@mui/icons-material/Info";
 import PhoneCallbackIcon from "@mui/icons-material/PhoneCallback";
-import SettingsIcon from "@mui/icons-material/Settings";
-import PrivacyTipIcon from "@mui/icons-material/PrivacyTip";
-import AccountBoxIcon from "@mui/icons-material/AccountBox";
-import NotificationsIcon from "@mui/icons-material/Notifications";
 import MoreIcon from "@mui/icons-material/More";
 import LogoutIcon from "@mui/icons-material/Logout";
 import MenuIcon from "@mui/icons-material/Menu";
+import { logout } from "../slices/auth";
+import { useDispatch } from "react-redux";
 
 const Leftsidebar = () => {
+
+  const dispatch = useDispatch();
+  const logOut = useCallback(() => {
+    dispatch(logout());
+  }, [dispatch]);
   return (
     <>=
       <Sidebar className="app">
@@ -41,16 +45,12 @@ const Leftsidebar = () => {
           <MenuItem component={<Link to="/about" className="link" />}
           icon={<InfoIcon />}> About </MenuItem>
           <MenuItem component={<Link to="/contact" className="link" />} icon={<PhoneCallbackIcon />}> Contact </MenuItem>
-          <SubMenu icon={<SettingsIcon />} label="Settings">
-            <MenuItem icon={<AccountBoxIcon />}> Account </MenuItem>
-            <MenuItem icon={<PrivacyTipIcon />}> Privacy </MenuItem>
-            <MenuItem icon={<NotificationsIcon />}> Notifications </MenuItem>
-          </SubMenu>
           <MenuItem component={<Link to="/profile" className="link" />} 
           icon={<MoreIcon />}> User Profie </MenuItem>
           <MenuItem
             component={<Link to="/login" className="link" />}
             icon={<LogoutIcon />}
+            onClick={logOut}
           >
             {" "}
             Log Out{" "}

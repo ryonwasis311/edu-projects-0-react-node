@@ -6,21 +6,31 @@ import { sample } from 'lodash';
 const users = [...Array(24)].map((_, index) => ({
   id: faker.datatype.uuid(),
   avatarUrl: `/assets/images/avatars/avatar_${index + 1}.jpg`,
-  name: faker.person.fullName(),
-  company: faker.company.name(),
-  isVerified: faker.datatype.boolean(),
-  status: sample(['active', 'banned']),
-  role: sample([
-    'Leader',
-    'Hr Manager',
-    'UI Designer',
-    'UX Designer',
-    'UI/UX Designer',
-    'Project Manager',
-    'Backend Developer',
-    'Full Stack Designer',
-    'Front End Developer',
-    'Full Stack Developer',
+  title:sample([
+    'SuperShoes1',
+    'SuperShoes6',
+    'SuperShoes5',
+    'SuperShoes4',
+    'SuperShoes3',
+    'SuperShoes2'
+  ]),
+  description: sample([
+    'These shoes are the most fashion',
+    'These shoes are the most big',
+    'These shoes are the most heavy',
+    'These shoes are the most expensive',
+    'These shoes are the most light',
+  ]),
+  price: sample([
+    '200$',
+    '210$',
+    '120$',
+    '70$',
+    '50$',
+    '80$',
+    '40$',
+    '120$',
+    ' 20$',
   ]),
 }));
 

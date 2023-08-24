@@ -1,7 +1,6 @@
 import React from 'react';
 import { Helmet } from 'react-helmet-async';
 import { filter } from 'lodash';
-import { sentenceCase } from 'change-case';
 import { useState } from 'react';
 import { HelmetProvider } from "react-helmet-async";
 import ThemeProvider from "../../theme";
@@ -27,7 +26,6 @@ import {
   TablePagination,
 } from '@mui/material';
 // components
-import Label from "../../components/label";
 import Iconify from '../../components/iconify';
 import Scrollbar from '../../components/scrollbar';
 // sections
@@ -38,12 +36,10 @@ import USERLIST from '../../mock_api/user';
 // ----------------------------------------------------------------------
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
-  { id: '' },
+  { id: 'title', label: 'Title', alignRight: false },
+  { id: 'description', label: 'Description', alignRight: false },
+  { id: 'price', label: 'Price', alignRight: false },
+  { id: 'edit', label:'Update' },
 ];
 
 // ----------------------------------------------------------------------
@@ -72,7 +68,7 @@ function applySortFilter(array, comparator, query) {
     return a[1] - b[1];
   });
   if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    return filter(array, (_user) => _user.title.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
   return stabilizedThis.map((el) => el[0]);
 }
@@ -86,7 +82,7 @@ export default function UserPage() {
 
   const [selected, setSelected] = useState([]);
 
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('title');
 
   const [filterName, setFilterName] = useState('');
 
@@ -115,11 +111,11 @@ export default function UserPage() {
     setSelected([]);
   };
 
-  const handleClick = (event, name) => {
-    const selectedIndex = selected.indexOf(name);
+  const handleClick = (event, title) => {
+    const selectedIndex = selected.indexOf(title);
     let newSelected = [];
     if (selectedIndex === -1) {
-      newSelected = newSelected.concat(selected, name);
+      newSelected = newSelected.concat(selected, title);
     } else if (selectedIndex === 0) {
       newSelected = newSelected.concat(selected.slice(1));
     } else if (selectedIndex === selected.length - 1) {
@@ -184,33 +180,27 @@ export default function UserPage() {
                 />
                 <TableBody>
                   {filteredUsers.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((row) => {
-                    const { id, name, role, status, company, avatarUrl, isVerified } = row;
-                    const selectedUser = selected.indexOf(name) !== -1;
+                    const { id, title, price,  description, avatarUrl } = row;
+                    const selectedUser = selected.indexOf(title) !== -1;
 
                     return (
                       <TableRow hover key={id} tabIndex={-1} role="checkbox" selected={selectedUser}>  
                         <TableCell padding="checkbox">
-                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, name)} />
+                          <Checkbox checked={selectedUser} onChange={(event) => handleClick(event, title)} />
                         </TableCell>
 
                         <TableCell component="th" scope="row" padding="none">
                           <Stack direction="row" alignItems="center" spacing={2}>
-                            <Avatar alt={name} src={avatarUrl} />
+                            <Avatar alt={title} src={avatarUrl} />
                             <Typography variant="subtitle2" noWrap>
-                              {name}
+                              {title}
                             </Typography>
                           </Stack>
                         </TableCell>
 
-                        <TableCell align="left">{company}</TableCell>
+                        <TableCell align="left">{description}</TableCell>
 
-                        <TableCell align="left">{role}</TableCell>
-
-                        <TableCell align="left">{isVerified ? 'Yes' : 'No'}</TableCell>
-
-                        <TableCell align="left">
-                          <Label color={(status === 'banned' && 'error') || 'success'}>{sentenceCase(status)}</Label>
-                        </TableCell>
+                        <TableCell align="left">{price}</TableCell>
 
                         <TableCell align="right">
                           <IconButton size="large" color="inherit" onClick={handleOpenMenu}>
@@ -286,7 +276,10 @@ export default function UserPage() {
       >
         <MenuItem>
           <Iconify icon={'eva:edit-fill'} sx={{ mr: 2 }} />
-          Edit
+          <Link to="/productlist/:id" variant="contained" startIcon={<Iconify icon="eva:plus-fill" />}>
+          Update
+          </Link>
+          Update
         </MenuItem>
 
         <MenuItem sx={{ color: 'error.main' }}>

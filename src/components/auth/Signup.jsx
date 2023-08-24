@@ -1,84 +1,167 @@
-import React, { Fragment, useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from 'react-router-dom';
+import { Formik, Field, Form, ErrorMessage } from "formik";
+import { Navigate, useNavigate } from "react-router-dom";
+import * as Yup from "yup";
+
+import { register } from "../slices/auth";
+import { clearMessage } from "../slices/message";
+import "./Auth.css";
 
 const Signup = () => {
-  const [formData, setFormData] = useState({
-    name: "",
+  const [successful, setSuccessful] = useState(false);
+
+  const { message } = useSelector((state) => state.message);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(clearMessage());
+  }, [dispatch]);
+
+  const initialValues = {
+    username: "",
     email: "",
     password: "",
-    password2: "",
+  };
+
+  const validationSchema = Yup.object().shape({
+    username: Yup.string()
+      .test(
+        "len",
+        "The username must be between 3 and 20 characters.",
+        (val) =>
+          val && val.toString().length >= 3 && val.toString().length <= 20
+      )
+      .required("This field is required!"),
+    email: Yup.string()
+      .email("This is not a valid email.")
+      .required("This field is required!"),
+    password: Yup.string()
+      .test(
+        "len",
+        "The password must be between 6 and 40 characters.",
+        (val) =>
+          val && val.toString().length >= 6 && val.toString().length <= 40
+      )
+      .required("This field is required!"),
   });
 
-  const { name, email, password, password2 } = formData;
+  const handleRegister = (formValue) => {
+    const { username, email, password } = formValue;
 
-  const onChange = (e) =>
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    setSuccessful(false);
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
+    dispatch(register({ username, email, password }))
+      .unwrap()
+      .then(() => {
+        setSuccessful(true);
+      })
+      .catch(() => {
+        setSuccessful(false);
+      });
   };
 
   return (
-    <Fragment>
-      <div className="log_container">
-        <h1 className="large text-bg-secondary ">Sign Up</h1>
-        <p className="lead">
-          <i className="fas fa-user"></i> Create Your Account
-        </p>
-        <form className="form" onSubmit={(e) => onSubmit(e)}>
-          <div className="form-group">
-            <input
-              type="text"
-              placeholder="Name"
-              name="name"
-              value={name}
-              onChange={(e) => onChange(e)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="email"
-              placeholder="Email Address"
-              name="email"
-              value={email}
-              onChange={(e) => onChange(e)}
-              required
-            />
-            <small className="form-text">
-              This site uses Prduct Infomation so if you want to edit Product
-              Information, use a Update.
-            </small>
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Password"
-              name="password"
-              minLength="6"
-              value={password}
-              onChange={(e) => onChange(e)}
-              required
-            />
-          </div>
-          <div className="form-group">
-            <input
-              type="password"
-              placeholder="Confirm Password"
-              name="password2"
-              minLength="6"
-              value={password2}
-              onChange={(e) => onChange(e)}
-              required
-            />
-          </div>
-          <input type="submit" className="btn btn-primary" value="Sign up" />
-        </form>
-        <p className="my-1">
-          Already have an account? <Link to="/Login">Sign up</Link>
-        </p>
+    <div className="col-md-12 signup-form">
+      <div className="card card-container">
+        <img
+          src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+          alt="profile-img"
+          className="profile-img-card"
+        />
+        <Formik
+          initialValues={initialValues}
+          validationSchema={validationSchema}
+          onSubmit={handleRegister}
+        >
+          {({ errors, touched }) => (
+            <Form>
+              {!successful && (
+                <div>
+                  <div className="form-group">
+                    <label htmlFor="username">Username</label>
+                    <Field
+                      name="username"
+                      type="text"
+                      className={
+                        "form-control" +
+                        (errors.username && touched.username
+                          ? " is-invalid"
+                          : "")
+                      }
+                    />
+                    <ErrorMessage
+                      name="username"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="email">Email</label>
+                    <Field
+                      name="email"
+                      type="email"
+                      className={
+                        "form-control" +
+                        (errors.email && touched.email ? " is-invalid" : "")
+                      }
+                    />
+                    <ErrorMessage
+                      name="email"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <label htmlFor="password">Password</label>
+                    <Field
+                      name="password"
+                      type="password"
+                      className={
+                        "form-control" +
+                        (errors.password && touched.password
+                          ? " is-invalid"
+                          : "")
+                      }
+                    />
+                    <ErrorMessage
+                      name="password"
+                      component="div"
+                      className="invalid-feedback"
+                    />
+                  </div>
+
+                  <div className="form-group">
+                    <button type="submit" className="btn btn-primary btn-block">
+                      Sign Up
+                    </button>
+                  </div>
+                  <p className="my-1">
+                    Already have an account? <Link to="/login">Sign In</Link>
+                  </p>
+                </div>
+              )}
+            </Form>
+          )}
+        </Formik>
       </div>
-    </Fragment>
+
+      {message && (
+        <div className="form-group">
+          <div
+            className={
+              successful ? "alert alert-success" : "alert alert-danger"
+            }
+            role="alert"
+          >
+            {message}
+          </div>
+        </div>
+      )}
+    </div>
   );
 };
 
