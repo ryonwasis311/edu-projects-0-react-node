@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useRef } from "react";
 import { Link } from "react-router-dom";
 import ImageUploading from "react-images-uploading";
 import { connect } from "react-redux";
@@ -6,6 +6,7 @@ import { createProduct } from "../slices/products";
 
 const ProductCreate = () => {
   // const [id, setId] = useState(null);
+  const [selectedFile, setSelectedFile] = useState(null);
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [description, setDescription] = useState();
@@ -62,7 +63,6 @@ const ProductCreate = () => {
             {({
               imageList,
               onImageUpload,
-              onImageRemoveAll,
               onImageUpdate,
               onImageRemove,
               isDragging,

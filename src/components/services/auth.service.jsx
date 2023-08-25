@@ -18,10 +18,25 @@ const login = (username, password) => {
     })
     .then((response) => {
       if (response.data.username) {
-        localStorage.setItem("user", JSON.stringify(response.data));
+        localStorage.setItem("auth_token", response.data.accessToken);
       }
 
       return response.data;
+    });
+};
+
+export const updateUser = (formData) => {
+  const token = localStorage.getItem("auth_token");
+  return axios({
+    method: "post",
+    url: API_URL + "update",
+    data: formData,
+    headers: { "x-access-token": token },
+  })
+    .then(function (response) {
+      //handle success
+    })
+    .catch(function (response) {
     });
 };
 

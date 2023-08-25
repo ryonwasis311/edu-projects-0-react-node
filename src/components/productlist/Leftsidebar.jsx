@@ -36,7 +36,7 @@ const Leftsidebar = () => {
             Dashboard{" "}
           </MenuItem>
           <MenuItem
-            component={<Link to="/productcreate" className="link" />}
+            component={<Link to="/productlist/create" className="link" />}
             icon={<AddIcon />}
           >
             {" "}

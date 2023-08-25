@@ -39,10 +39,10 @@ const Login = () => {
     dispatch(login({ username, password }))
       .unwrap()
       .then(() => {
-        alert("Hello! I am an alert box!");
+        alert("Hello! I am WASIS!");
       })
       .catch(() => {
-        alert("Hello! I am an alert box!");
+        alert("Hello! I am an ERROR Box!");
         setLoading(false);
       });
   };

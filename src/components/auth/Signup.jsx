@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link, Redirect } from 'react-router-dom';
 import { Formik, Field, Form, ErrorMessage } from "formik";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, NavigateFunction} from "react-router-dom";
 import * as Yup from "yup";
 
 import { register } from "../slices/auth";
@@ -10,6 +10,9 @@ import { clearMessage } from "../slices/message";
 import "./Auth.css";
 
 const Signup = () => {
+
+  let navigate: NavigateFunction = useNavigate();
+  
   const [successful, setSuccessful] = useState(false);
 
   const { message } = useSelector((state) => state.message);

@@ -53,7 +53,7 @@ const App = () => {
         <Route path='/login' Component={Login} />
         <Route path='/signup' Component={Signup} />
         <Route path='/productlist' Component={Productlist} />
-        <Route path='/productcreate' Component={ProductCreate} />
+        <Route path='/productlist/create' Component={ProductCreate} />
         <Route path="/productlist/:id" Component={ProductUpdate} />
         <Route path='/profile' Component={Profile} />
         <Route path='/about' Component={About} />
