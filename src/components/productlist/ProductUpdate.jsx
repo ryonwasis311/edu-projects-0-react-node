@@ -1,15 +1,19 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import ImageUploading from "react-images-uploading";
 import { connect } from "react-redux";
-import { updateProduct } from "../slices/products";
+import { updateProduct, getProduct } from "../services/ProductService";
 
-const ProductUpdate = () => {
+const ProductUpdate = (props) => {
   // const [id, setId] = useState(null);
   const [title, setTitle] = useState();
   const [price, setPrice] = useState();
   const [description, setDescription] = useState();
   const [submitted, setSubmitted] = useState(false);
+
+  const [products, setProducts] = useState([]);
+  const [reload, setReload] = useState(true);
+  const [modal, setModal] = useState(false);
 
   const onChangeTitle = (e) => {
     setTitle(e.target.value);
@@ -38,7 +42,6 @@ const ProductUpdate = () => {
     setSubmitted(true);
   };
 
- 
   const [images, setImages] = React.useState([]);
   const maxNumber = 69;
 
@@ -48,102 +51,115 @@ const ProductUpdate = () => {
     setImages(imageList);
   };
 
+  useEffect(() => {
+    getProduct().then((res) => {
+      setProducts(res.data);
+      setReload(false);
+    });
+  }, []);
+
+  if (props.show) {
+    return null;
+  }
+
   return (
-    <Fragment>
-      {
-        <div className="log_container">
-          <h1 className="large text-primary">Update Product</h1>
-          <p className="lead">
-            <i className="fas fa-user"></i>Write your product information
-          </p>
-          <ImageUploading
-            multiple
-            value={images}
-            onChange={onChange_img}
-            maxNumber={maxNumber}
-            dataURLKey="data_url"
-          >
-            {({
-              imageList,
-              onImageUpload,
-              onImageRemoveAll,
-              onImageUpdate,
-              onImageRemove,
-              isDragging,
-              dragProps,
-            }) => (
-              // write your building UI
-              <div className="upload__image-wrapper">
-                <button
-                  style={isDragging ? { color: "red" } : undefined}
-                  onClick={onImageUpload}
-                  {...dragProps}
-                >
-                  Update your avatar
-                </button>
-                &nbsp;
-                {imageList.map((image, index) => (
-                  <div key={index} className="image-item">
-                    <img src={image["data_url"]} alt="" width="100" />
-                    <div className="image-item__btn-wrapper">
-                      <button onClick={() => onImageUpdate(index)}>
-                        Update
-                      </button>
-                      <button onClick={() => onImageRemove(index)}>
-                        Remove
-                      </button>
+    <div className="Modal">
+      <Fragment>
+        {
+          <div className="log_container">
+            <h1 className="large text-primary">Update Product</h1>
+            <p className="lead">
+              <i className="fas fa-user"></i>Write your product information
+            </p>
+            <ImageUploading
+              multiple
+              value={images}
+              onChange={onChange_img}
+              maxNumber={maxNumber}
+              dataURLKey="data_url"
+            >
+              {({
+                imageList,
+                onImageUpload,
+                onImageRemoveAll,
+                onImageUpdate,
+                onImageRemove,
+                isDragging,
+                dragProps,
+              }) => (
+                // write your building UI
+                <div className="upload__image-wrapper">
+                  <button
+                    style={isDragging ? { color: "red" } : undefined}
+                    onClick={onImageUpload}
+                    {...dragProps}
+                  >
+                    Update your avatar
+                  </button>
+                  &nbsp;
+                  {imageList.map((image, index) => (
+                    <div key={index} className="image-item">
+                      <img src={image["data_url"]} alt="" width="100" />
+                      <div className="image-item__btn-wrapper">
+                        <button onClick={() => onImageUpdate(index)}>
+                          Update
+                        </button>
+                        <button onClick={() => onImageRemove(index)}>
+                          Remove
+                        </button>
+                      </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
+              )}
+            </ImageUploading>
+            <form className="form">
+              <div className="form-group">
+                Enter title
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Title"
+                  id="title"
+                  value={title}
+                  onChange={onChangeTitle}
+                  name="title"
+                  required
+                />
               </div>
-            )}
-          </ImageUploading>
-          <form className="form">
-            <div className="form-group">
-              Enter title
-              <input
-                type="text"
+              <div className="form-group">
+                Enter price
+                <input
+                  type="text"
+                  className="form-control"
+                  placeholder="Enter Price"
+                  id="price"
+                  value={price}
+                  onChange={onChangePrice}
+                  name="price"
+                  required
+                />
+              </div>
+              Write Product Description...
+              <textarea
+                placeholder="Write Product Details.."
+                // id="description"
+                value={description}
                 className="form-control"
-                placeholder="Enter Title"
-                id="title"
-                value={title}
-                onChange={onChangeTitle}
-                name="title"
+                onChange={onChangeDescription}
+                name="description"
                 required
               />
-            </div>
-            <div className="form-group">
-              Enter price
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Enter Price"
-                id="price"
-                value={price }
-                onChange={onChangePrice}
-                name="price"
-                required
-              />
-            </div>
-            Write Product Description...
-            <textarea
-              placeholder="Write Product Details.."
-              // id="description"
-              value={description }
-              className="form-control"
-              onChange={onChangeDescription}
-              name="description"
-              required
-            />
-            <button onClick={updateProduct} className="btn btn-success">
-              Update
-            </button>
-            <Link to="/productlist">Cancel</Link>
-          </form>
-        </div>
-      }
-    </Fragment>
+              <button onClick={updateProduct} className="btn btn-success">
+                Update
+              </button>
+              <Link to="/productlist">Cancel</Link>
+            </form>
+          </div>
+        }
+      </Fragment>
+    </div>
   );
 };
 
-export default connect(null, { updateProduct })(ProductUpdate);
+export default ProductUpdate;

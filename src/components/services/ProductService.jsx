@@ -1,19 +1,23 @@
 import axios from "axios";
+// import poducts from "../slices/products";
 
 const API_URL = "http://localhost:8080/api/products";
 
-export const createProduct = (formData) => {
+export const createProduct = async (formData) => {
   const token = localStorage.getItem("auth_token");
-  return axios({
-    method: "post",
-    url: API_URL + "create",
-    data: formData,
-    headers: { "x-access-token": token },
-  })
-    .then(function (reposnse) {})
-    .catch(function (response) {});
-};
+  console.log("formdata",formData);
+  try{
+    
+    const res = await axios.post("http://localhost:8080/api/products/create", formData, {
+      headers: { "x-access-token": token }
+    });
+    // return res.data;
+    console.log(res.data);
+  } catch(err){
+    throw err;
+  }
 
+};
 
 export const updateProduct = async ({
   name,
@@ -41,12 +45,16 @@ export const updateProduct = async ({
 };
 
 export const deleteProduct = async (id) => {
+
   const token = localStorage.getItem("auth_token");
-  return await axios.delete(`${API_URL}/${id}`, {
-    headers: {
-      "x-access-token": token,
-    },
-  });
+  try{
+    const res = await axios.delete(API_URL + `/${id}`, {
+      headers: { "x-access-token": token },
+    });
+    return res;
+  } catch(err){
+    throw err;
+  }
 };
 
 export const getProduct = () => {
